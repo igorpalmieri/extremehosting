@@ -5,17 +5,22 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.ColumnDefault;
 
-public class Stay {
+@Entity
+@Table(name = "STAYS")
+public class Stay implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,10 +33,10 @@ public class Stay {
     private House house;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date start;
+    private Date startdate;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date end;
+    private Date enddate;
     
     @ColumnDefault(value="0")
     private int extraGuests;
@@ -56,21 +61,23 @@ public class Stay {
         this.house = house;
     }
 
-    public Date getStart() {
-        return start;
+    public Date getStartdate() {
+        return startdate;
     }
 
-    public void setStart(Date start) {
-        this.start = start;
+    public void setStartdate(Date startdate) {
+        this.startdate = startdate;
     }
 
-    public Date getEnd() {
-        return end;
+    public Date getEnddate() {
+        return enddate;
     }
 
-    public void setEnd(Date end) {
-        this.end = end;
+    public void setEnddate(Date enddate) {
+        this.enddate = enddate;
     }
+
+    
 
     public int getExtraGuests() {
         return extraGuests;

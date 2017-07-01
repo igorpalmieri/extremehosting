@@ -24,7 +24,9 @@
         <mapping class="Model.User" />
         <mapping class="Model.Sport" />
         <mapping class="Model.House" />   
+        <mapping class="Model.Stay" />   
         <mapping class="Model.Rate" />   
+       
         
         <!-- TEST -->
   </session-factory>
