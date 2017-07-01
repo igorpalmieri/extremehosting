@@ -10,7 +10,10 @@ public class HouseDAO {
 
     static Session session = HibernateSessionFactory.getSession(); 
      
-    public static void insert(User user){
+    public static void save(House house){
+        session.beginTransaction();
+	session.saveOrUpdate(house); 
+        session.getTransaction().commit();
     }
     
     public static List<String> getCountries(){
@@ -32,4 +35,10 @@ public class HouseDAO {
         return session.find(House.class, id);
     }
    
+ 
+    public static List<House> getUserHouses(User user) {
+       return session.createQuery("FROM House WHERE owner = :owner")
+               .setParameter("owner", user)
+               .list();
+    }
 }
