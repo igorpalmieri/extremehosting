@@ -4,11 +4,13 @@
     Author     : igan
 --%>
 
+<%@page import="Model.Stay"%>
 <%@page import="Model.House"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%   
     List<House> availableHouses = (List<House>)request.getAttribute("houses");
+    Stay novo = (Stay)request.getAttribute("new-stay");
 %>
 <!DOCTYPE html>
 <html>
@@ -55,7 +57,7 @@
                     <th>Cidade</th>
                     <th>Bairro</th>
                     <th>Endereço</th>
-                    <th>Vagas</th>
+                    <th>V | C</th>
                     <th>Dono</th>
                     <th>Ações</th>
                 </tr>
@@ -65,9 +67,9 @@
                         <td><%=house.getCity()%></td>
                         <td><%=house.getRegion()%></td>
                         <td><%=house.getAddress()%></td>
-                        <td><%=house.getVacancy()%></td>
+                        <td><%=house.getVacancy(novo.getStartdate(),novo.getEnddate())%> | <%=house.getCapacity()%></td>
                         <td><a href="${pageContext.request.contextPath}/main?id=<%=house.getOwner().getId()%>"><%=house.getOwner().getName()%></a></td>
-                        <td><input type="button" onclick="location.href = '${pageContext.request.contextPath}/house?id=<%=house.getId()%>'"value="Ver Detalhes" /></td>
+                        <td><input type="button" onclick="location.href = '${pageContext.request.contextPath}/viewhouse?id=<%=house.getId()%>'"value="Detalhes" /></td>
                     </tr>
                 <%}%>
             </table>

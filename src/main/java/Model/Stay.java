@@ -111,4 +111,11 @@ public class Stay implements Serializable {
         this.Id = Id;
     }
     
+    public boolean isConflict(Date start, Date end){
+       //inicio1.before(inicio2) and fim1.after(inicio2)
+       //inicio1.after(inicio2) and inicio1.before(fim2)
+       return (this.startdate.before(start) && this.enddate.after(start) || this.startdate.after(start) && this.startdate.before(end));
+    }
+    
+    
 }

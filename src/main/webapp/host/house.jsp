@@ -21,15 +21,17 @@
     </head>
     <body>
         <jsp:include page="/header.jsp" />
-        <p><%=house.getAddress()%></p>
-        <p><%=house.getRegion()%></p>
-        <p><%=house.getCity()%></p>
-        <p><%=house.getCountry()%></p>
-        <p><%=house.getVacancy()%></p>
-        <p><%=owner.getName()%></p>
-        <form action="house" method="post">
-            <input type="hidden" name="houseid" value="<%=house.getId()%>" />
-            <input type="submit" value="Solicitar Hospedagem" />
-        </form>
+        <div class="viewhouse">
+            <p><%=house.getAddress()%></p>
+            <p><%=house.getRegion()%></p>
+            <p><%=house.getCity()%></p>
+            <p><%=house.getCountry()%></p>
+            <p><%=house.getCapacity()%></p>
+            <p><%=owner.getName()%></p>
+            <form action="house" method="post">
+                <input type="hidden" name="houseid" value="<%=house.getId()%>" />
+                <input type="submit" value="Solicitar Hospedagem" />
+            </form>
+        </div>
     </body>
 </html>

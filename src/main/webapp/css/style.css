@@ -12,11 +12,9 @@ body{
     overflow: hidden;
     background-color: #333;
 }
-
 .header li {
     float: left;
 }
-
 .header li a {
     display: block;
     color: white;
@@ -24,7 +22,6 @@ body{
     padding: 20px 16px;
     text-decoration: none;
 }
-
 .header li a:hover {
     background-color: #111;
 }
@@ -152,7 +149,7 @@ body{
             _border: #fff 2px solid;  
             background-position: 50% 50%;
         }
-        .jssort01 .p:hover .c {  
+.jssort01 .p:hover .c {  
             top: 0px;    
             left: 0px; 
             width: 70px;  
@@ -160,19 +157,19 @@ body{
             border: #fff 1px solid;  
             background-position: 50% 50%;
         }
-        .jssort01 .p.pdn .c {  
+.jssort01 .p.pdn .c {  
             background-position: 50% 50%;   
             width: 68px;   
             height: 68px;  
             border: #000 2px solid;
         }
-        * html .jssort01 .c, * html .jssort01 .pdn .c, * html .jssort01 .pav {    
+* html .jssort01 .c, * html .jssort01 .pdn .c, * html .jssort01 .pav {    
             /* ie quirks mode adjust */    
             width /**/: 72px;    
             height /**/: 72px;
         }
 
-        #jssor_1 {
+#jssor_1 {
             position:relative;
             margin:0 auto;
             top:0px;
@@ -187,8 +184,7 @@ body{
             border-bottom-left-radius:20px;
             border-bottom-right-radius:20px;
         }
-
-        .insidejssor{
+.insidejssor{
             cursor:default;
             position:relative;
             top:0px;
@@ -198,11 +194,10 @@ body{
             
             overflow:hidden;
         }
-
-        .loading{
+.loading{
             position:absolute;top:0px;left:0px;background-color:rgba(0,0,0,0.7);
         }
-        .insideloading1{
+.insideloading1{
             filter: alpha(opacity=70); 
             opacity: 0.7; 
             position: absolute; 
@@ -213,8 +208,7 @@ body{
             height: 50%;
 
         }
-
-        .insideloading2{
+.insideloading2{
             position:absolute;
             display:block;
             background:url('img/loading.gif') no-repeat center center;
@@ -224,41 +218,38 @@ body{
             height:50%;
         }
 
-        .profile{
+.profile{
              position:relative;
             display:block;
             text-align:center;
             top:130px;
 
         }
-        .profile img{
+.profile img{
             width:80px;
             height:80px;
              border-radius:10px;
             border-radius:10px;
             border:0px #333 solid;
         }
-
-        .profile h1{
+.profile h1{
             font-size:16px;
             color:white;
             margin-top:0px;
             margin-bottom:0px;
         }
-
-        .profile h2{
+.profile h2{
             font-size:10px;
             color:white;
             margin-top:2px;
         }
-
-        .profile h3 img{
+.profile h3 img{
             width:15px;
             height:15px;
             margin-top:60px;
         }
 
-        .rating img{
+.rating img{
             margin-top:0px;
         }
      
@@ -268,12 +259,10 @@ body{
     width:100%;
     min-width:200px;
 }
-
 .ratings ul{
     list-style-type: none;    
     display:inline-block;
 }
-
 .ratings ul li{
     float:left;
     text-align:center;
@@ -298,29 +287,24 @@ body{
     padding: 10px;
     color: black;
 }
-
 .comment table tr th{
     text-align:left;
 }
-
 .comment{
     margin-top:40px;
 }
-
 .comment table tr td{
     text-align:left;
     font-weight:normal;
     padding-top:20px;
     padding-bottom:20px;
 }
-
 .comment table tr td ul li{
     font-size:18px;
 }
 .comment table tr th a{
     text-decoration:none;
 }
-
 .comment a img{
     vertical-align:middle;
     margin-right: 5px; 
@@ -337,25 +321,20 @@ body{
     margin-top: 50px;
     text-align:center;
 }
-
 .form table{
     width: 300px;
     margin: 0 auto;
 }
-
 .form img{
     margin-top:20px;
     margin-bottom: 30px;
     height:200px;
     width:242px;
 }
-
-
 .form input{
     width: 80%;
     margin-bottom: 5px;
 }
-
 .form input[type=submit]{
     background:#00cc66;
     color:white;
@@ -366,7 +345,6 @@ body{
     margin-top: 20px;
     border-radius: 10px;
 }
-
 .form button{
     background:#3399ff;
     color:white;

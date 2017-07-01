@@ -17,15 +17,15 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author igan
  */
-@WebServlet(name = "House", urlPatterns = {"/house"})
-public class House extends HttpServlet {
+@WebServlet(name = "ViewHouse", urlPatterns = {"/viewhouse"})
+public class ViewHouse extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
         if(id == null){
-            response.sendRedirect("host/search.jsp");
+            response.sendRedirect("search");
         }
         else{
             request.setAttribute("house", HouseDAO.getHouse(Long.parseLong(id)));
@@ -36,6 +36,8 @@ public class House extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
     }
 
     @Override

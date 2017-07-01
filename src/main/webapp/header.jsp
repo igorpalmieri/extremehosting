@@ -11,7 +11,7 @@
 <div class="header">
     <ul>
         <li><b><a href="${pageContext.request.contextPath}/">Extreme Hosting</a></b></li>
-        <li><a href="${pageContext.request.contextPath}/host/search.jsp">Busca de Hospedagem</a></li>
+        <li><a href="${pageContext.request.contextPath}/search">Busca de Hospedagem</a></li>
         <li><a href="${pageContext.request.contextPath}/sport/search.jsp">Busca de Prática de Esporte</a></li>
         <% if(session.getAttribute("user") != null) {%>
         <li><a href="logout">Logout</a></li>
