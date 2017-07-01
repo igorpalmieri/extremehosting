@@ -107,5 +107,12 @@ public class Stay implements Serializable {
        return (this.startdate.before(start) && this.enddate.after(start) || this.startdate.after(start) && this.startdate.before(end));
     }
     
+    public void submitApproval(boolean approve){
+        if(approve)
+            status = EstadoStay.APROVADO;
+        else
+            status = EstadoStay.REPROVADO;
+    }
+    
     
 }

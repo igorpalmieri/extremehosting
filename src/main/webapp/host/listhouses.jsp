@@ -58,7 +58,6 @@
                User user = h.getOwner();
             %>
             <tr>
-                
                 <td><%= h.getCountry() %></td>
                 <td><%= h.getCity() %></td>
                 <td><%= h.getRegion() %></td>

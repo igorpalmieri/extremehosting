@@ -26,6 +26,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setCharacterEncoding("utf-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         User logged = UserDAO.getUser(username, password);
@@ -51,6 +52,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setCharacterEncoding("utf-8");
         response.sendRedirect(request.getContextPath()+"/");
     }
     /**

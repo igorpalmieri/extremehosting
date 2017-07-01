@@ -29,6 +29,7 @@ public class ViewHouse extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setCharacterEncoding("utf-8");
         String id = request.getParameter("id");
         if(id == null){
             response.sendRedirect("search");
@@ -42,6 +43,7 @@ public class ViewHouse extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setCharacterEncoding("utf-8");
         House h = (House) request.getSession().getAttribute("current-house");
         Stay s = (Stay) request.getSession().getAttribute("new-stay");
         User u = (User) request.getSession().getAttribute("user");

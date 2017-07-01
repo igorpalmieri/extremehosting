@@ -54,6 +54,7 @@ public class Search extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setCharacterEncoding("utf-8");
         String country = request.getParameter("country");
         
         response.setContentType("application/json");
