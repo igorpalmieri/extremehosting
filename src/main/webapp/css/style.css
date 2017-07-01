@@ -30,6 +30,45 @@ body{
 }
 
 
+.search form{
+    background-color: white;
+    width:300px;
+    text-align:center;
+    margin: 0 auto;
+    padding-bottom:30px;
+    padding-top:30px;
+    margin-top: 50px;
+    border-radius:20px;
+}
+.search form input{
+    margin: 0 auto;
+    width:220px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.search form select{
+    margin: 0 auto;
+    width:224px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.search table{ 
+    background-color:white;
+    margin:0 auto;
+    margin-top:50px;
+    padding:10px;
+}
+.search table td{ 
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.search h3{
+    margin:0 auto;
+    text-align: center;
+    color:red;
+}
+
+
 .jssora05l, .jssora05r {
     display: block;
     position: absolute;

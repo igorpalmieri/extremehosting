@@ -13,18 +13,22 @@ public class UserDAO {
         session.getTransaction().commit();
 	session.close();
     }
-   
-    public static User getActiveUser(String username){
+    
+    public static User getUser(String username, String password){
         Session session = HibernateSessionFactory.getSession(); 
-        session.beginTransaction();
-        User user = (User) (session.createQuery("from User where Username = ?").setString(0, username).list().get(0));
+        try{
+        User user = (User) (session.createQuery("from User where Username = :username and Password = :password")                
+                .setParameter("username", username)
+                .setParameter("password", password).list().get(0));
         return user;
+        }catch(IndexOutOfBoundsException ex){
+            return null;
+        }
     }
     
-    public static User getActiveUser(Long id){
+    public static User getUser(Long id){
         Session session = HibernateSessionFactory.getSession(); 
-        session.beginTransaction();
-        User user = (User) session.load(User.class,id);
+        User user = session.find(User.class, id);
         return user;
     }
 }

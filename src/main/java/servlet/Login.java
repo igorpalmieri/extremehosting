@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package servlet;
 
-import DAO.LoginDAO;
+import DAO.UserDAO;
+import Model.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,13 +28,11 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        if(LoginDAO.validate(username, password)){
+        User logged = UserDAO.getUser(username, password);
+        if(logged != null){
             HttpSession session = request.getSession();
-            session.setAttribute("authenticated", true);
-            session.setAttribute("username", username);
-            request.setAttribute("username", username);
-            RequestDispatcher rd = request.getRequestDispatcher("main");
-            rd.forward(request, response);
+            session.setAttribute("user", logged);
+            response.sendRedirect("main");
         }
         else{
             request.setAttribute("error", "Wrong username and/or password");

@@ -6,16 +6,14 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 
 <div class="header">
     <ul>
-        <li><a href="">Extreme Hosting</a></li>
-        <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-        <li><a href="#news">News</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#about">About</a></li>
-        <% if(session.getAttribute("authenticated")!=null && session.getAttribute("authenticated").equals(true)) {%>
+        <li><b><a href="${pageContext.request.contextPath}/">Extreme Hosting</a></b></li>
+        <li><a href="${pageContext.request.contextPath}/host/search.jsp">Busca de Hospedagem</a></li>
+        <li><a href="${pageContext.request.contextPath}/sport/search.jsp">Busca de Prática de Esporte</a></li>
+        <% if(session.getAttribute("user") != null) {%>
         <li><a href="logout">Logout</a></li>
         <%}%>
     </ul>

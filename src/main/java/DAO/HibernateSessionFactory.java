@@ -1,6 +1,7 @@
 package DAO;
 
 import Model.Rate;
+import Model.TipoRate;
 import Model.User;
 import java.util.Date;
 import org.hibernate.Session;
@@ -71,7 +72,7 @@ public class HibernateSessionFactory {
         rate.setSender(user);
         rate.setReceiver(user2);
         rate.setDescription("Ótima pessoa");
-        rate.setType(0);
+        rate.setType(TipoRate.PERSONAL);
         rate.setValue(4);
         rate.setCreated(new Date());
         s.save(rate);
@@ -80,7 +81,7 @@ public class HibernateSessionFactory {
         rate.setSender(user3);
         rate.setReceiver(user2);
         rate.setDescription("Ótimo Host");
-        rate.setType(1);
+        rate.setType(TipoRate.HOST);
         rate.setValue(5);
         rate.setCreated(new Date());
         s.save(rate);
@@ -89,7 +90,7 @@ public class HibernateSessionFactory {
         rate.setSender(user2);
         rate.setReceiver(user3);
         rate.setDescription("Ótimo Host");
-        rate.setType(1);
+        rate.setType(TipoRate.HOST);
         rate.setValue(5);
         rate.setCreated(new Date());
         s.save(rate);
@@ -98,7 +99,7 @@ public class HibernateSessionFactory {
         rate.setSender(user);
         rate.setReceiver(user2);
         rate.setDescription("Péssimo Guest");
-        rate.setType(2);
+        rate.setType(TipoRate.GUEST);
         rate.setValue(1);
         rate.setCreated(new Date());
         s.save(rate);
@@ -107,7 +108,7 @@ public class HibernateSessionFactory {
         rate.setSender(user);
         rate.setReceiver(user2);
         rate.setDescription("Péssimo Guest");
-        rate.setType(2);
+        rate.setType(TipoRate.GUEST);
         rate.setValue(1);
         rate.setCreated(new Date());
         s.save(rate);
@@ -117,7 +118,7 @@ public class HibernateSessionFactory {
         rate.setSender(user2);
         rate.setReceiver(user);
         rate.setDescription("Péssimo Guest");
-        rate.setType(2);
+        rate.setType(TipoRate.GUEST);
         rate.setValue(1);
         rate.setCreated(new Date());
         s.save(rate);
@@ -127,7 +128,7 @@ public class HibernateSessionFactory {
         rate.setSender(user);
         rate.setReceiver(user2);
         rate.setDescription("Médio SportGuest");
-        rate.setType(3);
+        rate.setType(TipoRate.SPORTGUEST);
         rate.setValue(3);
         rate.setCreated(new Date());
         s.save(rate);
@@ -136,7 +137,7 @@ public class HibernateSessionFactory {
         rate.setSender(user2);
         rate.setReceiver(user);
         rate.setDescription("Médio SportGuest");
-        rate.setType(3);
+        rate.setType(TipoRate.SPORTGUEST);
         rate.setValue(1);
         rate.setCreated(new Date());
         s.save(rate);
@@ -145,7 +146,7 @@ public class HibernateSessionFactory {
         rate.setSender(user);
         rate.setReceiver(user2);
         rate.setDescription("Ótimo SportHost");
-        rate.setType(4);
+        rate.setType(TipoRate.SPORTHOST);
         rate.setValue(4);
         rate.setCreated(new Date());
         s.save(rate);
@@ -154,7 +155,7 @@ public class HibernateSessionFactory {
         rate.setSender(user2);
         rate.setReceiver(user);
         rate.setDescription("Ótimo SportHost");
-        rate.setType(4);
+        rate.setType(TipoRate.SPORTHOST);
         rate.setValue(3);
         rate.setCreated(new Date());
         s.save(rate);

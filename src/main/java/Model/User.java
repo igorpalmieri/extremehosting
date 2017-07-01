@@ -5,6 +5,7 @@
  */
 package Model;
 
+import DAO.RateDAO;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
@@ -19,9 +20,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "USERS")
 public class User implements Serializable {
-
- 
-    
+   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UserId")
@@ -50,7 +49,7 @@ public class User implements Serializable {
     @ManyToOne
     private Sport FavSport;
     
-    @OneToMany
+    @OneToMany(mappedBy="owner")
     private List<House> Houses;
     
     public Long getId(){
@@ -94,23 +93,33 @@ public class User implements Serializable {
     public void setHost(boolean isHost) {
         this.Host = isHost;
     }
-
     public String getProfileURL() {
         if(ProfileURL == null)
             return "img/profile.png";
         return ProfileURL;
     }
-
     public void setProfileURL(String ProfileURL) {
         this.ProfileURL = ProfileURL;
     }
-    
-       public void setUsername(String Username) {
+    public void setUsername(String Username) {
         this.Username = Username;
     }
-
     public void setPassword(String Password) {
         this.Password = Password;
     }
-
+    
+    public List<Rate> getRateList(TipoRate type){
+        List<Rate> rates = RateDAO.getRates(Id);
+        rates.removeIf(rt -> rt.Type != type);
+        return rates;
+    }
+    
+    public float getRateAvg(TipoRate type){
+        List<Rate> rates = getRateList(type);
+        float total = 0f;
+        for(Rate r : rates)
+            total += r.getValue();
+        return total/rates.size();
+    }
+    
 }

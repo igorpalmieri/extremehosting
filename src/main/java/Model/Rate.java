@@ -35,7 +35,7 @@ public class Rate implements Serializable {
     
       
     @Column(nullable = false)
-    private int Type;
+     TipoRate Type;
     
     @ManyToOne
     private User Sender;
@@ -84,14 +84,15 @@ public class Rate implements Serializable {
         this.Modified = Modified;
     }
 
-    public int getType() {
+    public TipoRate getType() {
         return Type;
     }
 
-    public void setType(int Type) {
+    public void setType(TipoRate Type) {
         this.Type = Type;
     }
 
+    
     public User getSender() {
         return Sender;
     }
