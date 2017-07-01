@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,10 +46,10 @@ public class User implements Serializable {
     @ManyToOne
     private Sport FavSport;
     
-    @OneToMany(mappedBy="owner")
+    @OneToMany(mappedBy="owner", fetch = FetchType.LAZY)
     private List<House> Houses;
     
-    @OneToMany(mappedBy="guest")
+    @OneToMany(mappedBy="guest", fetch = FetchType.LAZY)
     private List<Stay> Stays;
     
     public Long getId(){

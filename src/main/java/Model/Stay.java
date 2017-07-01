@@ -104,7 +104,7 @@ public class Stay implements Serializable {
     public boolean isConflict(Date start, Date end){
        //inicio1.before(inicio2) and fim1.after(inicio2)
        //inicio1.after(inicio2) and inicio1.before(fim2)
-       return (this.startdate.before(start) && this.enddate.after(start) || this.startdate.after(start) && this.startdate.before(end));
+       return (this.startdate.before(start) && this.enddate.after(start) || this.startdate.after(start) && this.startdate.before(end) || (this.startdate.compareTo(start) == 0 && this.enddate.compareTo(end) == 0));
     }
     
     public void submitApproval(boolean approve){

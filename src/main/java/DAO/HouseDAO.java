@@ -26,13 +26,13 @@ public class HouseDAO {
     }
 
     public static List<House> getAvailableHouses(String country, String city, int quantity,Date start,Date end) {
-      return(List<House>) session.createQuery("FROM House WHERE Country = :country AND City = :city AND capacity >= :quantity")
+      List<House> hs = (List<House>) session.createQuery("FROM House WHERE Country = :country AND City = :city AND capacity >= :quantity")
                .setParameter("country", country)
                .setParameter("city", city)
-               .setParameter("quantity",quantity)
-               .stream()
-               .filter(h -> ((House)h).getVacancy(start, end)> 0)
-               .collect(Collectors.toList());
+               .setParameter("quantity",quantity).list();
+      return hs.stream()
+        .filter(h -> ((House)h).getVacancy(start, end) >= quantity)
+        .collect(Collectors.toList());
     }
     
     public static House getHouse(Long id){
@@ -41,8 +41,11 @@ public class HouseDAO {
    
  
     public static List<House> getHousesByUser(User user) {
-       return session.createQuery("FROM House WHERE owner = :owner")
+       List<House> hs = session.createQuery("FROM House WHERE owner = :owner")
                .setParameter("owner", user)
                .list();
+       hs.forEach(h -> session.refresh(h));
+       hs.forEach(h -> h.getStays().forEach(s -> session.refresh(s)));
+       return hs;
     }
 }
