@@ -77,15 +77,18 @@
         <script type="text/javascript">
             function edit(evt) {
                 var id = $(evt).find("input[name=id]").val();
-                var form = $("form#edit");
                 $(evt).parent().parent().find("td:lt(-1)").each(function(index) {
                     var value = $(this).html();
                     $($("form#edit").find("input[type=text],input[type=number]").get(index)).attr("value",value);
                 });
                 $($("form#edit").find("input[type=submit]")).attr("value","Editar");
-                $("form#edit").find("input[type=submit]").parent().append('<input name="id" type="hidden" value="'+id+'">');
-                $("form#edit").find("input[type=submit]").parent().append('<button type="button" onClick="window.location.reload();">Limpar</button>');
-                
+                if($("form#edit").find("input[name=id]").length == 0){
+                    $("form#edit").find("input[type=submit]").parent().append('<input name="id" type="hidden" value="'+id+'">');
+                }
+                if($("form#edit").find("button").length == 0){
+                    $("form#edit").find("input[type=submit]").parent().append('<button type="button" onClick="window.location.reload();">Limpar</button>');
+                }
+                    
                 return false;
             }
         </script>

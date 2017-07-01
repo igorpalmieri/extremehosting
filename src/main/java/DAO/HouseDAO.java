@@ -40,7 +40,7 @@ public class HouseDAO {
     }
    
  
-    public static List<House> getUserHouses(User user) {
+    public static List<House> getHousesByUser(User user) {
        return session.createQuery("FROM House WHERE owner = :owner")
                .setParameter("owner", user)
                .list();
