@@ -29,6 +29,7 @@
                     <th>Cidade</th>
                     <th>Bairro</th>
                     <th>Endereço</th>
+                    <th>Capacidade</th>
                     <th>Usuário</th>
                 </tr>
                 <tr>
@@ -37,6 +38,7 @@
                     <td><input name="city" type="text" value="" required/></td>
                     <td><input name="region" type="text" value="" required/></td>
                     <td><input name="address" type="text" value="" required/></td>
+                    <td><input name="capacity" type="number" value="" required/></td>
                     <td><%= ((User)session.getAttribute("user")).getName() %></td>
                     <td><input type="submit" value="Salvar"/>  </td>
                 </tr>
@@ -48,6 +50,7 @@
                 <th>Cidade</th>
                 <th>Bairro</th>
                 <th>Endereço</th>
+                <th>Capacidade</th>
                 <th>Usuário</th>
                 <th>Actions <%= houses.size() %></th>
             </tr>
@@ -60,6 +63,7 @@
                 <td><%= h.getCity() %></td>
                 <td><%= h.getRegion() %></td>
                 <td><%= h.getAddress()%></td>
+                <td><%= h.getCapacity()%></td>
                 <td><%= user.getName() %></td>
                 <td>
                     <form onsubmit="return edit(this)">
@@ -74,10 +78,9 @@
             function edit(evt) {
                 var id = $(evt).find("input[name=id]").val();
                 var form = $("form#edit");
-                $(evt).parent().parent().find("td:lt(4)").each(function(index) {
+                $(evt).parent().parent().find("td:lt(-1)").each(function(index) {
                     var value = $(this).html();
-                    $($("form#edit").find("input[type=text]").get(index)).attr("value",value);
-                    
+                    $($("form#edit").find("input[type=text],input[type=number]").get(index)).attr("value",value);
                 });
                 $($("form#edit").find("input[type=submit]")).attr("value","Editar");
                 $("form#edit").find("input[type=submit]").parent().append('<input name="id" type="hidden" value="'+id+'">');

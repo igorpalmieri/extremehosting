@@ -95,6 +95,7 @@ public class ListHouses extends HttpServlet {
         house.setCity(request.getParameter("city"));
         house.setCountry(request.getParameter("country"));
         house.setAddress(request.getParameter("address"));
+        house.setCapacity(Integer.parseInt(request.getParameter("capacity")));
         HouseDAO.save(house);
         response.sendRedirect("listhouses");
     }
