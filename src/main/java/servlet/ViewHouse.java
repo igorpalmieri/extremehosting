@@ -6,7 +6,13 @@
 package servlet;
 
 import DAO.HouseDAO;
+import DAO.StayDAO;
+import Model.EstadoStay;
+import Model.House;
+import Model.Stay;
+import Model.User;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,18 +23,18 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author igan
  */
-@WebServlet(name = "House", urlPatterns = {"/house"})
-public class House extends HttpServlet {
+@WebServlet(name = "ViewHouse", urlPatterns = {"/viewhouse"})
+public class ViewHouse extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
         if(id == null){
-            response.sendRedirect("host/search.jsp");
+            response.sendRedirect("search");
         }
         else{
-            request.setAttribute("house", HouseDAO.getHouse(Long.parseLong(id)));
+            request.getSession().setAttribute("current-house", HouseDAO.getHouse(Long.parseLong(id)));
             request.getRequestDispatcher("/host/house.jsp").forward(request, response);
         }
         
@@ -36,6 +42,17 @@ public class House extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        House h = (House) request.getSession().getAttribute("current-house");
+        Stay s = (Stay) request.getSession().getAttribute("new-stay");
+        User u = (User) request.getSession().getAttribute("user");
+        s.setHouse(h);
+        h.getStays().add(s);
+        s.setGuest(u);
+        u.getStays().add(s);
+        s.setStatus(EstadoStay.PENDENTE);
+        StayDAO.save(s);
+        PrintWriter out = response.getWriter();
+        out.print("Solicitacao Enviada com Sucesso!");
     }
 
     @Override

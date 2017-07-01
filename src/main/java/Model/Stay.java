@@ -42,8 +42,6 @@ public class Stay implements Serializable {
     private int extraGuests;
     
     private EstadoStay status;
-    
-    private boolean approved;
 
     public User getGuest() {
         return guest;
@@ -95,14 +93,6 @@ public class Stay implements Serializable {
         this.status = status;
     }
 
-    public boolean isApproved() {
-        return approved;
-    }
-
-    public void setApproved(boolean approved) {
-        this.approved = approved;
-    }
-
     public Long getId() {
         return Id;
     }
@@ -110,5 +100,12 @@ public class Stay implements Serializable {
     public void setId(Long Id) {
         this.Id = Id;
     }
+    
+    public boolean isConflict(Date start, Date end){
+       //inicio1.before(inicio2) and fim1.after(inicio2)
+       //inicio1.after(inicio2) and inicio1.before(fim2)
+       return (this.startdate.before(start) && this.enddate.after(start) || this.startdate.after(start) && this.startdate.before(end));
+    }
+    
     
 }

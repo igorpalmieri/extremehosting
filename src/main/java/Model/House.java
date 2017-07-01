@@ -2,7 +2,9 @@ package Model;
 
 import DAO.HouseDAO;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +30,7 @@ public class House implements Serializable {
     private String City;
     private String Region;
     @ColumnDefault(value="0")
-    private int vacancy;
+    private int capacity;
     @ManyToOne
     private User owner;
     
@@ -82,12 +84,22 @@ public class House implements Serializable {
         this.Region = Region;
     }
 
-    public int getVacancy() {
-        return vacancy;
+    public int getVacancy(Date start, Date end) {
+        List<Stay> filtered = this.Stays.stream().filter(s -> s.isConflict(start,end)).collect(Collectors.toList());
+        int soma = filtered.size();
+        for(Stay s : filtered){
+            soma += s.getExtraGuests();
+        }
+        return capacity - soma;
+    }
+    
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
-    public void setVacancy(int vacancy) {
-        this.vacancy = vacancy;
+    public int getCapacity() {
+        return capacity;
     }
 
     public List<Stay> getStays() {
@@ -106,8 +118,8 @@ public class House implements Serializable {
         return HouseDAO.getCities(country);
     }
     
-    public static List<House> getAvailableHouses(String country, String city, int quantity){
-        return HouseDAO.getAvailableHouses(country,city,quantity);
+    public static List<House> getAvailableHouses(String country, String city, int quantity, Date start, Date end){
+        return HouseDAO.getAvailableHouses(country,city,quantity,start,end);
     }
     
 }
