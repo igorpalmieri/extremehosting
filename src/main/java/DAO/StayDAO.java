@@ -22,6 +22,10 @@ public class StayDAO {
         return stays;
     }
     
+    public static List<Stay> getStaysByGuest(User user){
+        return session.createQuery("FROM Stay WHERE guest = :guest").setParameter("guest", user).list();
+    }
+    
     public static Stay getStayById(Long id){
         return session.find(Stay.class, id);
     }

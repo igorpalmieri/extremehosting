@@ -20,6 +20,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="js/jssor.slider-23.1.3.min.js" type="text/javascript"></script>
+    <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="js/imageslider.js" type="text/javascript"></script>
     <title>Profile - Extreme Hosting</title>
 </head>
@@ -184,6 +185,40 @@
             </li>
         </ul>
     </div>
-
+                        
+    <span class="button-popup">
+        <a href="#" id="button-popup">Avaliar</a>
+    </span>
+                        
+    <div class="window-popup">
+        <div class="wp-content">
+            <h2>Avaliando <%= user.getName() %></h2>
+            <form action="rateuser" method="post">
+                <label for="value">Valor:</label>
+                <input name="value" type="number" min="1" max="5"/>
+                <label for="description">Descrição:</label>
+                <input name="description" type="text"/>
+                <input name="receiver" type="hidden" value="<%= user.getId() %>"/>
+                <input type="submit" value="Avaliar" />
+            </form>
+            <a href="#" id="button-close-popup">Close</a>
+        </div>
+    </div>
+    <script type="text/javascript">
+       
+        
+        $(document).ready(function(){
+            
+        
+        
+            $("#button-popup").click(function(){
+                $(".window-popup").fadeIn(300);
+            });
+            
+            $("#button-close-popup").click(function(){
+                $(".window-popup").fadeOut(300);
+            });
+        });
+    </script>
 </body>
 </html>
