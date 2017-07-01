@@ -31,6 +31,7 @@
                     <th>Endereço</th>
                     <th>Capacidade</th>
                     <th>Usuário</th>
+                    <th>Ações</th>
                 </tr>
                 <tr>
                     
@@ -52,7 +53,7 @@
                 <th>Endereço</th>
                 <th>Capacidade</th>
                 <th>Usuário</th>
-                <th>Actions <%= houses.size() %></th>
+                <th>Ações</th>
             </tr>
             <%for (House h : houses){
                User user = h.getOwner();
