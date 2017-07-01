@@ -42,7 +42,8 @@ public class Search extends HttpServlet {
             Stay novo = new Stay();
             novo.setStartdate(new Date(start));
             novo.setEnddate(new Date(end));
-            request.setAttribute("new-stay", novo);
+            novo.setExtraGuests(Integer.parseInt(qty) - 1);
+            request.getSession().setAttribute("new-stay", novo);
             request.setAttribute("houses",House.getAvailableHouses(country, city, Integer.parseInt(qty),novo.getStartdate(),novo.getEnddate()));
         }       
             

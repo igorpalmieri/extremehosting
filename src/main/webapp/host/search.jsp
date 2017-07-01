@@ -10,7 +10,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%   
     List<House> availableHouses = (List<House>)request.getAttribute("houses");
-    Stay novo = (Stay)request.getAttribute("new-stay");
+    Stay novo = (Stay)session.getAttribute("new-stay");
 %>
 <!DOCTYPE html>
 <html>
@@ -33,12 +33,12 @@
             <select id="cities" name="city">
                 <option value="--Cidade--">--Cidade--</option>
             </select>
-            <input type="text" name="start" placeholder="Data de Início"/>
-            <input type="text" name="end" placeholder="Data de Fim"/>
+            <input type="text" name="start" placeholder="Data de Início" value="01/07/2017"/>
+            <input type="text" name="end" placeholder="Data de Fim" value="01/07/2017"/>
             <select name="qty">
                 <option value="0">--Quantidade de Pessoas--</option>
                 <option value="1">1</option>
-                <option value="2">2</option>
+                <option selected value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
             </select>

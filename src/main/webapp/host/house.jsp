@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%   
-    House house = (House) request.getAttribute("house");
+    House house = (House) session.getAttribute("current-house");
     User owner = house.getOwner();
 %>
 
@@ -17,6 +17,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js" type="text/javascript"></script>
         <title>Extreme Hosting</title>
     </head>
     <body>
@@ -28,10 +29,29 @@
             <p><%=house.getCountry()%></p>
             <p><%=house.getCapacity()%></p>
             <p><%=owner.getName()%></p>
-            <form action="house" method="post">
-                <input type="hidden" name="houseid" value="<%=house.getId()%>" />
-                <input type="submit" value="Solicitar Hospedagem" />
+            <form action="${pageContext.request.contextPath}/viewhouse" method="post">
+                <input type="button" id="request" value="Solicitar Hospedagem" />
             </form>
+                <p id="message"></p>
         </div>
+                <script type="text/javascript">
+                    $('#request').click(function(){
+                        console.log('funcao submit');
+                        $.ajax({
+                            type: 'POST',
+                            url: '${pageContext.request.contextPath}/viewhouse',
+                            success: function(data){
+                                var msg = document.getElementById('message');
+                                msg.style.color = "green";
+                                document.getElementById('message').innerHTML = 'Solicitação submetida com sucesso!';
+                            },
+                            error: function(data){
+                                var msg = document.getElementById('message');
+                                msg.style.color = "red";
+                                document.getElementById('message').innerHTML = 'Erro ao processar a solicitação';
+                            }
+                        });
+                    });
+                </script>
     </body>
 </html>

@@ -42,8 +42,6 @@ public class Stay implements Serializable {
     private int extraGuests;
     
     private EstadoStay status;
-    
-    private boolean approved;
 
     public User getGuest() {
         return guest;
@@ -93,14 +91,6 @@ public class Stay implements Serializable {
 
     public void setStatus(EstadoStay status) {
         this.status = status;
-    }
-
-    public boolean isApproved() {
-        return approved;
-    }
-
-    public void setApproved(boolean approved) {
-        this.approved = approved;
     }
 
     public Long getId() {
