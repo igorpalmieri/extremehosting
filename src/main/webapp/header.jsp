@@ -13,7 +13,8 @@
     <ul>
         <li><b><a href="${pageContext.request.contextPath}/main">Extreme Hosting</a></b></li>
         <li><a href="${pageContext.request.contextPath}/search">Busca de Hospedagem</a></li>
-        <li><a href="${pageContext.request.contextPath}/sport/search.jsp">Busca de Prática de Esporte</a></li>
+        <li><a href="${pageContext.request.contextPath}/approve">Aprovação de Hospedagem</a></li>
+        <li><a href="${pageContext.request.contextPath}/request">Visualização de Solicitações</a></li>
         <% if(session.getAttribute("user") != null) {%>
         <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
         <%}%>

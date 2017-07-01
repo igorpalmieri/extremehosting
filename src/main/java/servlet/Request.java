@@ -20,38 +20,27 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author igan
  */
-@WebServlet(name = "ApproveRequest", urlPatterns = {"/approve"})
-public class ApproveRequest extends HttpServlet {
+@WebServlet(name = "Request", urlPatterns = {"/request"})
+public class Request extends HttpServlet {
 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setCharacterEncoding("utf-8");
-        User user = (User) request.getSession().getAttribute("user");
-        request.setAttribute("stays",StayDAO.getStaysByHouseOwner(user));
-        RequestDispatcher rd = request.getRequestDispatcher("host/approval.jsp");
+        request.setAttribute("stays", StayDAO.getStaysByGuest((User)request.getSession().getAttribute("user")));
+        RequestDispatcher rd = request.getRequestDispatcher("host/request.jsp");
         rd.include(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("Action");
         Stay stay = (Stay) StayDAO.getStayById(Long.parseLong(request.getParameter("StayId")));     
-        if(action.equals("Aprovar"))
-            StayDAO.submitApproval(stay,true);
-        else
-            StayDAO.submitApproval(stay,false);
+        StayDAO.cancelRequest(stay);
         doGet(request,response);
-        
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
