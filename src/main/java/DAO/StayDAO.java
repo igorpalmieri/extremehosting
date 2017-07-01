@@ -1,6 +1,8 @@
 package DAO;
 
 import Model.Stay;
+import Model.User;
+import java.util.List;
 import org.hibernate.Session;
 
 public class StayDAO {
@@ -11,6 +13,10 @@ public class StayDAO {
         session.beginTransaction();
 	session.merge(stay);
         session.getTransaction().commit();
+    }
+    
+    public static List<Stay> getStaysByHouseOwner(User user){
+        return null;
     }
     
 }

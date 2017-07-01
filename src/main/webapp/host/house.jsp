@@ -36,7 +36,6 @@
         </div>
                 <script type="text/javascript">
                     $('#request').click(function(){
-                        console.log('funcao submit');
                         $.ajax({
                             type: 'POST',
                             url: '${pageContext.request.contextPath}/viewhouse',
