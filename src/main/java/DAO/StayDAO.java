@@ -18,7 +18,7 @@ public class StayDAO {
     
     public static List<Stay> getStaysByHouseOwner(User user){
         List<Stay> stays = new ArrayList<>();
-        HouseDAO.getUserHouses(user).forEach(t -> stays.addAll(t.getStays()));
+        HouseDAO.getHousesByUser(user).forEach(t -> stays.addAll(t.getStays()));
         return stays;
     }
     
