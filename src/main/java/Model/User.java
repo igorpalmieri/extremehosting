@@ -40,17 +40,16 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String Country;
     
-    @Column(nullable = false)
-    private boolean Host;
-    
     private String ProfileURL;
-    
     
     @ManyToOne
     private Sport FavSport;
     
     @OneToMany(mappedBy="owner")
     private List<House> Houses;
+    
+    @OneToMany(mappedBy="guest")
+    private List<Stay> Stays;
     
     public Long getId(){
         return Id;
@@ -74,10 +73,7 @@ public class User implements Serializable {
     public String getCountry() {
         return Country;
     }
-    public boolean isHost() {
-        return Host;
-    }
- 
+
     public void setId(Long id){
         this.Id = id;
     }
@@ -90,9 +86,6 @@ public class User implements Serializable {
     public void setCountry(String Country) {
         this.Country = Country;
     } 
-    public void setHost(boolean isHost) {
-        this.Host = isHost;
-    }
     public String getProfileURL() {
         if(ProfileURL == null)
             return "img/profile.png";
@@ -106,6 +99,30 @@ public class User implements Serializable {
     }
     public void setPassword(String Password) {
         this.Password = Password;
+    }
+
+    public Sport getFavSport() {
+        return FavSport;
+    }
+
+    public void setFavSport(Sport FavSport) {
+        this.FavSport = FavSport;
+    }
+
+    public List<House> getHouses() {
+        return Houses;
+    }
+
+    public void setHouses(List<House> Houses) {
+        this.Houses = Houses;
+    }
+
+    public List<Stay> getStays() {
+        return Stays;
+    }
+
+    public void setStays(List<Stay> Stays) {
+        this.Stays = Stays;
     }
     
     public List<Rate> getRateList(TipoRate type){

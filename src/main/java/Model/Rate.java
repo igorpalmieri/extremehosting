@@ -43,6 +43,9 @@ public class Rate implements Serializable {
     @ManyToOne
     private User Receiver;
     
+    @ManyToOne
+    private Stay stay;
+    
     public Long getId() {
         return Id;
     }
@@ -107,6 +110,14 @@ public class Rate implements Serializable {
 
     public void setReceiver(User Receiver) {
         this.Receiver = Receiver;
+    }
+
+    public Stay getStay() {
+        return stay;
+    }
+
+    public void setStay(Stay stay) {
+        this.stay = stay;
     }
       
 }

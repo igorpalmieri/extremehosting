@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -30,7 +31,9 @@ public class House implements Serializable {
     private int vacancy;
     @ManyToOne
     private User owner;
-
+    
+    @OneToMany(mappedBy="house")
+    private List<Stay> Stays;
     public Long getId() {
         return Id;
     }
@@ -85,6 +88,14 @@ public class House implements Serializable {
 
     public void setVacancy(int vacancy) {
         this.vacancy = vacancy;
+    }
+
+    public List<Stay> getStays() {
+        return Stays;
+    }
+
+    public void setStays(List<Stay> Stays) {
+        this.Stays = Stays;
     }
     
     public static List<String> getCountries(){

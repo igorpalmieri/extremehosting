@@ -41,7 +41,6 @@ public class HibernateSessionFactory {
         user.setName("Igor Antunes");
         user.setCity("Rio de Janeiro");
         user.setCountry("Brazil");
-        user.setHost(true);
         user.setUsername("igorantunes");
         user.setPassword("teste");
         user.setProfileURL("fileserver/profiles/igor.jpg");
@@ -51,7 +50,6 @@ public class HibernateSessionFactory {
         user2.setName("Igor Blackman");
         user2.setCity("Niterói");
         user2.setCountry("Brazil");
-        user2.setHost(true);
         user2.setUsername("igorblackman");
         user2.setPassword("teste");
         user2.setProfileURL("fileserver/profiles/igorblackman.jpg");
@@ -61,7 +59,6 @@ public class HibernateSessionFactory {
         user3.setName("Paulo Henrique Borges");
         user3.setCity("Nova Friburgo");
         user3.setCountry("Brazil");
-        user3.setHost(false);
         user3.setUsername("phborges");
         user3.setPassword("teste");
         user3.setProfileURL("fileserver/profiles/paulo.jpg");
