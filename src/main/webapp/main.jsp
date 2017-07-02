@@ -4,7 +4,7 @@
     Author     : Igor-Surface
 --%>
 
-<%@page import="Model.TipoRate"%>
+<%@page import="Model.TypeRate"%>
 <%@page import="Model.User"%>
 <%@page import="Model.Rate"%>
 <%@page import="java.util.List"%>
@@ -60,7 +60,7 @@
             <li>
                 <div class="rating">
                     <p>Personal</p>
-                    <%float j=0,media=user.getRateAvg(TipoRate.PERSONAL); 
+                    <%float j=0,media=user.getRateAvg(TypeRate.PERSONAL,true); 
                     while((j++)<5){ 
                         if(j<=media){%>
                         <img src="img/star.png" height="30" width="30"/>
@@ -69,7 +69,9 @@
                     <%}}%>
                     <div class="comment">
                         <table>
-                            <% for(Rate r : user.getRateList(TipoRate.PERSONAL)) { %>
+                            
+                            <% for(Rate r : user.getRateList(TypeRate.PERSONAL)) { %>
+                            <% if(r.isDoubleRated()){%>
                                 <tr>
                                     <th><a href="main?id=<%=r.getSender().getId()%>"><img src="<%=r.getSender().getProfileURL()%>" width="50" height="50" /><%=r.getSender().getName(14)%></a></th>
                                     <th><% for(int i=0;i<r.getValue();i++) {%><img src="img/star.png" height="15" width="15"/><%}%></th>
@@ -77,7 +79,14 @@
                                 <tr>
                                     <td colspan="2"><%=r.getDescription()%></td>
                                 </tr>
-                            <% } %>
+                            <% } else {%>
+                                <tr>
+                                    <th><a href="main?id=<%=r.getSender().getId()%>"><img src="<%=r.getSender().getProfileURL()%>" width="50" height="50" /><%=r.getSender().getName(14)%></a></th>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b><i>Necessário avaliar de volta para visualizar</i></b></td>
+                                </tr>    
+                            <%}} %>
                         </table>
                     </div>
                 </div>
@@ -85,7 +94,7 @@
             <li>
                 <div class="rating">
                     <p>Guest</p>
-                    <%j=0; media=user.getRateAvg(TipoRate.GUEST); 
+                    <%j=0; media=user.getRateAvg(TypeRate.GUEST,true); 
                     while((j++)<5){ 
                         if(j<=media){%>
                         <img src="img/star.png" height="30" width="30"/>
@@ -94,7 +103,8 @@
                     <%}}%>
                     <div class="comment">
                         <table>
-                            <% for(Rate r : user.getRateList(TipoRate.GUEST)) { %>
+                            <% for(Rate r : user.getRateList(TypeRate.GUEST)) { %>
+                            <% if(r.isDoubleRated()){%>
                                 <tr>
                                     <th><a href="main?id=<%=r.getSender().getId()%>"><img src="<%=r.getSender().getProfileURL()%>" width="50" height="50" /><%=r.getSender().getName(14)%></a></th>
                                     <th><% for(int i=0;i<r.getValue();i++) {%><img src="img/star.png" height="15" width="15"/><%}%></th>
@@ -102,7 +112,14 @@
                                 <tr>
                                     <td colspan="2"><%=r.getDescription()%></td>
                                 </tr>
-                            <% } %>
+                            <% } else {%>
+                                <tr>
+                                    <th><a href="main?id=<%=r.getSender().getId()%>"><img src="<%=r.getSender().getProfileURL()%>" width="50" height="50" /><%=r.getSender().getName(14)%></a></th>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b><i>Necessário avaliar de volta para visualizar</i></b></td>
+                                </tr>    
+                            <%}} %>
                         </table>
                     </div>
                 </div>
@@ -111,7 +128,7 @@
            <li>
                 <div class="rating">
                     <p>Host</p>
-                    <% j=0; media=user.getRateAvg(TipoRate.HOST); 
+                    <% j=0; media=user.getRateAvg(TypeRate.HOST,true); 
                     while((j++)<5){ 
                         if(j<=media){%>
                         <img src="img/star.png" height="30" width="30"/>
@@ -120,15 +137,23 @@
                     <%}}%>
                     <div class="comment">
                         <table>
-                            <% for(Rate r : user.getRateList(TipoRate.HOST)) { %>
-                                <tr>
+                            <% for(Rate r : user.getRateList(TypeRate.HOST)) { %>
+                            <% if(r.isDoubleRated()){%>    
+                            <tr>
                                     <th><a href="main?id=<%=r.getSender().getId()%>"><img src="<%=r.getSender().getProfileURL()%>" width="50" height="50" /><%=r.getSender().getName(14)%></a></th>
                                     <th><% for(int i=0;i<r.getValue();i++) {%><img src="img/star.png" height="15" width="15"/><%}%></th>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><%=r.getDescription()%></td>
                                 </tr>
-                            <% } %>
+                                <% } else {%>
+                                <tr>
+                                    <th><a href="main?id=<%=r.getSender().getId()%>"><img src="<%=r.getSender().getProfileURL()%>" width="50" height="50" /><%=r.getSender().getName(14)%></a></th>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b><i>Necessário avaliar de volta para visualizar</i></b></td>
+                                </tr>    
+                            <%}} %>
                         </table>
                     </div>
                 </div>
@@ -136,7 +161,7 @@
             <li>
                 <div class="rating">
                     <p>Sport Host</p>
-                    <% j=0; media=user.getRateAvg(TipoRate.SPORTHOST); 
+                    <% j=0; media=user.getRateAvg(TypeRate.SPORTHOST,true); 
                     while((j++)<5){ 
                         if(j<=media){%>
                         <img src="img/star.png" height="30" width="30"/>
@@ -145,15 +170,23 @@
                     <%}}%>
                     <div class="comment">
                         <table>
-                            <% for(Rate r : user.getRateList(TipoRate.SPORTHOST)) { %>
-                                <tr>
+                            <% for(Rate r : user.getRateList(TypeRate.SPORTHOST)) { %>
+                            <% if(r.isDoubleRated()){%>    
+                            <tr>
                                     <th><a href="main?id=<%=r.getSender().getId()%>"><img src="<%=r.getSender().getProfileURL()%>" width="50" height="50" /><%=r.getSender().getName(14)%></a></th>
                                     <th><% for(int i=0;i<r.getValue();i++) {%><img src="img/star.png" height="15" width="15"/><%}%></th>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><%=r.getDescription()%></td>
                                 </tr>
-                            <% } %>
+                            <% } else {%>
+                                <tr>
+                                    <th><a href="main?id=<%=r.getSender().getId()%>"><img src="<%=r.getSender().getProfileURL()%>" width="50" height="50" /><%=r.getSender().getName(14)%></a></th>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b><i>Necessário avaliar de volta para visualizar</i></b></td>
+                                </tr>    
+                            <%}} %>
                         </table>
                     </div>
                 </div>
@@ -161,7 +194,7 @@
             <li>
                 <div class="rating">
                     <p>Sport Guest</p>
-                    <% j=0; media=user.getRateAvg(TipoRate.SPORTGUEST); 
+                    <% j=0; media=user.getRateAvg(TypeRate.SPORTGUEST,true); 
                     while((j++)<5){ 
                         if(j<=media){%>
                         <img src="img/star.png" height="30" width="30"/>
@@ -170,7 +203,8 @@
                     <%}}%>
                     <div class="comment">
                         <table>
-                            <% for(Rate r : user.getRateList(TipoRate.SPORTGUEST)) { %>
+                            <% for(Rate r : user.getRateList(TypeRate.SPORTGUEST)) { %>
+                            <% if(r.isDoubleRated()){%>    
                                 <tr>
                                     <th><a href="main?id=<%=r.getSender().getId()%>"><img src="<%=r.getSender().getProfileURL()%>" width="50" height="50" /><%=r.getSender().getName(14)%></a></th>
                                     <th><% for(int i=0;i<r.getValue();i++) {%><img src="img/star.png" height="15" width="15"/><%}%></th>
@@ -178,7 +212,14 @@
                                 <tr>
                                     <td colspan="2"><%=r.getDescription()%></td>
                                 </tr>
-                            <% } %>
+                            <% } else {%>
+                                <tr>
+                                    <th><a href="main?id=<%=r.getSender().getId()%>"><img src="<%=r.getSender().getProfileURL()%>" width="50" height="50" /><%=r.getSender().getName(14)%></a></th>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b><i>Necessário avaliar de volta para visualizar</i></b></td>
+                                </tr>    
+                            <%}} %>
                         </table>
                     </div>
                 </div>
@@ -194,8 +235,14 @@
         <div class="wp-content">
             <h2>Avaliando <%= user.getName() %></h2>
             <form action="rateuser" method="post">
-                <label for="value">Valor:</label>
-                <input name="value" type="number" min="1" max="5"/>
+                <label for="value">Nota: </label>
+                <select name="value">
+                    <option value="1">1</option>
+                    <option selected value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
                 <label for="description">Descrição:</label>
                 <input name="description" type="text"/>
                 <input name="receiver" type="hidden" value="<%= user.getId() %>"/>

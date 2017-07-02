@@ -32,8 +32,8 @@ and open the template in the editor.
 }
 
 .wp-content{
-    width: 500px;
-    height: 300px;
+    width: 600px;
+    height: 200px;
     background: white;
     border-radius: 3px;
     position: absolute;
@@ -61,5 +61,5 @@ and open the template in the editor.
 }
 
 .wp-content input {
-    padding: 10px;
+    padding: 2px;
 }

@@ -23,14 +23,15 @@
     <body>
         <jsp:include page="/header.jsp" />
         <div class="viewhouse">
-            <p><%=house.getAddress()%></p>
-            <p><%=house.getRegion()%></p>
-            <p><%=house.getCity()%></p>
-            <p><%=house.getCountry()%></p>
+            <p><img src="img/house.jpg" /></p>
+            <p><b>Endereço</b></p>
+            <p><%=house.getAddress()%> - <%=house.getRegion()%> - <%=house.getCity()%> - <%=house.getCountry()%></p>
+            <p><b>Capacidade</b></p>
             <p><%=house.getCapacity()%></p>
+            <p><b>Dono</b></p>
             <p><%=owner.getName()%></p>
             <form action="${pageContext.request.contextPath}/viewhouse" method="post">
-                <input type="button" id="request" value="Solicitar Hospedagem" />
+                <p><input type="button" id="request" value="Solicitar Hospedagem" /></p>
             </form>
                 <p id="message"></p>
         </div>

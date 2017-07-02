@@ -34,12 +34,9 @@ public class HouseDAO {
         .filter(h -> ((House)h).getVacancy(start, end) >= quantity)
         .collect(Collectors.toList());
     }
-    
     public static House getHouse(Long id){
         return session.find(House.class, id);
-    }
-   
- 
+    } 
     public static List<House> getHousesByUser(User user) {
        List<House> hs = session.createQuery("FROM House WHERE owner = :owner")
                .setParameter("owner", user)

@@ -5,7 +5,10 @@
  */
 package Model;
 
+import DAO.RateDAO;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,12 +44,11 @@ public class Stay implements Serializable {
     @ColumnDefault(value="0")
     private int extraGuests;
     
-    private EstadoStay status;
+    private StatusStay status;
 
     public User getGuest() {
         return guest;
     }
-
     public void setGuest(User guest) {
         this.guest = guest;
     }
@@ -54,7 +56,6 @@ public class Stay implements Serializable {
     public House getHouse() {
         return house;
     }
-
     public void setHouse(House house) {
         this.house = house;
     }
@@ -62,7 +63,11 @@ public class Stay implements Serializable {
     public Date getStartdate() {
         return startdate;
     }
-
+    
+    public String getStartdateString(){
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        return df.format(startdate);
+    }
     public void setStartdate(Date startdate) {
         this.startdate = startdate;
     }
@@ -70,33 +75,32 @@ public class Stay implements Serializable {
     public Date getEnddate() {
         return enddate;
     }
-
     public void setEnddate(Date enddate) {
         this.enddate = enddate;
     }
-
+    public String getEnddateString(){
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        return df.format(enddate);
+    }
     
 
     public int getExtraGuests() {
         return extraGuests;
     }
-
     public void setExtraGuests(int extraGuests) {
         this.extraGuests = extraGuests;
     }
 
-    public EstadoStay getStatus() {
+    public StatusStay getStatus() {
         return status;
     }
-
-    public void setStatus(EstadoStay status) {
+    public void setStatus(StatusStay status) {
         this.status = status;
     }
 
     public Long getId() {
         return Id;
     }
-
     public void setId(Long Id) {
         this.Id = Id;
     }
@@ -106,12 +110,15 @@ public class Stay implements Serializable {
        //inicio1.after(inicio2) and inicio1.before(fim2)
        return (this.startdate.before(start) && this.enddate.after(start) || this.startdate.after(start) && this.startdate.before(end) || (this.startdate.compareTo(start) == 0 && this.enddate.compareTo(end) == 0));
     }
-    
     public void submitApproval(boolean approve){
         if(approve)
-            status = EstadoStay.APROVADO;
+            status = StatusStay.APROVADO;
         else
-            status = EstadoStay.REPROVADO;
+            status = StatusStay.REPROVADO;
+    }
+    
+    public boolean isEvaluated(User sender){
+        return (RateDAO.getRates(this).stream().filter(r -> r.getSender().getId().equals(sender.getId())).count() > 0);
     }
     
     

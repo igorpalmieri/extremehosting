@@ -1,6 +1,6 @@
 package Model;
 
-public enum EstadoStay {
+public enum StatusStay {
 	PENDENTE,
 	APROVADO,
 	REPROVADO

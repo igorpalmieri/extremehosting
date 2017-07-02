@@ -126,17 +126,25 @@ public class User implements Serializable {
         this.Stays = Stays;
     }
     
-    public List<Rate> getRateList(TipoRate type){
+    public List<Rate> getRateList(TypeRate type){
         List<Rate> rates = RateDAO.getRates(Id);
         rates.removeIf(rt -> rt.Type != type);
         return rates;
     }
     
-    public float getRateAvg(TipoRate type){
+    public float getRateAvg(TypeRate type, boolean doubleRateNeeded){
         List<Rate> rates = getRateList(type);
         float total = 0f;
-        for(Rate r : rates)
-            total += r.getValue();
+        for(Rate r : rates){
+            if(doubleRateNeeded){
+                if(r.isDoubleRated())
+                    total += r.getValue();
+            }
+            else{
+                total += r.getValue();
+            }
+        }
+            
         return total/rates.size();
     }
     

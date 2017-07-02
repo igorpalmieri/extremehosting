@@ -5,7 +5,7 @@
  */
 package Model;
 
-public enum TipoRate {
+public enum TypeRate {
     PERSONAL,
     HOST,
     GUEST,

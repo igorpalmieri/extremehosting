@@ -6,9 +6,11 @@
 package servlet;
 
 import DAO.StayDAO;
+import Model.StatusStay;
 import Model.Stay;
 import Model.User;
 import java.io.IOException;
+import java.util.stream.Collectors;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,7 +31,7 @@ public class ApproveRequest extends HttpServlet {
             throws ServletException, IOException {
         response.setCharacterEncoding("utf-8");
         User user = (User) request.getSession().getAttribute("user");
-        request.setAttribute("stays",StayDAO.getStaysByHouseOwner(user));
+        request.setAttribute("stays",StayDAO.getStaysByHouseOwner(user).stream().filter(h -> h.getStatus() != StatusStay.REPROVADO).collect(Collectors.toList()));
         RequestDispatcher rd = request.getRequestDispatcher("host/approval.jsp");
         rd.include(request, response);
     }

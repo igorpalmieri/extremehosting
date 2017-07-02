@@ -1,10 +1,11 @@
 package DAO;
 
 import Model.Rate;
-import java.util.Calendar;
+import Model.Stay;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 public class RateDAO {
     
@@ -16,11 +17,14 @@ public class RateDAO {
 	session.saveOrUpdate(rate); 
         session.getTransaction().commit();
     }
-    
-    
-    
+        
       public static List<Rate> getRates(Long UserId){
         List<Rate> rates = (List<Rate>) session.createQuery("FROM Rate R where R.Receiver.Id = "+UserId).list();
+        return rates;
+    }
+        public static List<Rate> getRates(Stay stay){
+          Query q = session.createQuery("FROM Rate WHERE stay = :stay").setParameter("stay", stay);
+        List<Rate> rates = (List<Rate>) q.list();
         return rates;
     }
 }

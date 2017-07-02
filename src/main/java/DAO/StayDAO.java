@@ -1,6 +1,6 @@
 package DAO;
 
-import Model.EstadoStay;
+import Model.StatusStay;
 import Model.Stay;
 import Model.User;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class StayDAO {
                     .stream()
                     .filter(st -> (st.isConflict(s.getStartdate(), s.getEnddate()) && !Objects.equals(st.getId(), s.getId())))
                     .collect(Collectors.toList());
-            sts.forEach(st -> st.setStatus(EstadoStay.REPROVADO));
+            sts.forEach(st -> st.setStatus(StatusStay.REPROVADO));
             sts.forEach(st -> session.merge(st));
         }
         session.merge(s);

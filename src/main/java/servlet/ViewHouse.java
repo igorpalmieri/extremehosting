@@ -7,7 +7,7 @@ package servlet;
 
 import DAO.HouseDAO;
 import DAO.StayDAO;
-import Model.EstadoStay;
+import Model.StatusStay;
 import Model.House;
 import Model.Stay;
 import Model.User;
@@ -51,7 +51,7 @@ public class ViewHouse extends HttpServlet {
         h.getStays().add(s);
         s.setGuest(u);
         u.getStays().add(s);
-        s.setStatus(EstadoStay.PENDENTE);
+        s.setStatus(StatusStay.PENDENTE);
         StayDAO.save(s);
         PrintWriter out = response.getWriter();
         out.print("Solicitacao Enviada com Sucesso!");

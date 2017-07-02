@@ -21,7 +21,8 @@
     </head>
     <body>
         <jsp:include page="/header.jsp" />
-        <h1>Lista de Casas</h1>
+        <div class="request">
+        <h1 style="text-align:center">Lista de Casas</h1>
         <form id="edit" action="./listhouses" method="post" >
             <table>
                 <tr>
@@ -74,6 +75,7 @@
             </tr>
             <%}%>
         </table>
+        </div>
         <script type="text/javascript">
             function edit(evt) {
                 var id = $(evt).find("input[name=id]").val();

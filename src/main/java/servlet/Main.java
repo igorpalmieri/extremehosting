@@ -8,7 +8,7 @@ package servlet;
 import DAO.RateDAO;
 import DAO.UserDAO;
 import Model.Rate;
-import Model.TipoRate;
+import Model.TypeRate;
 import Model.User;
 import java.io.IOException;
 import java.util.ArrayList;
