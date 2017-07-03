@@ -50,7 +50,8 @@ public class ViewHouse extends HttpServlet {
         s.setHouse(h);
         h.getStays().add(s);
         s.setGuest(u);
-        u.getStays().add(s);
+        StayDAO.getStaysByGuest(u).add(s);
+        //u.getStays().add(s);
         s.setStatus(StatusStay.PENDENTE);
         StayDAO.save(s);
         PrintWriter out = response.getWriter();

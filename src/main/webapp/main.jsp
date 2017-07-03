@@ -4,6 +4,7 @@
     Author     : Igor-Surface
 --%>
 
+<%@page import="DAO.RateDAO"%>
 <%@page import="Model.TypeRate"%>
 <%@page import="Model.User"%>
 <%@page import="Model.Rate"%>
@@ -226,11 +227,17 @@
             </li>
         </ul>
     </div>
-                        
+    <% 
+    User activeUser = (User) session.getAttribute("user");
+    List<Rate> rates = RateDAO.getPersonalRatesByUser(activeUser.getId(), user.getId());
+    if(activeUser.getId() != user.getId() && rates.isEmpty()){
+    %>                   
     <span class="button-popup">
         <a href="#" id="button-popup">Avaliar</a>
     </span>
-                        
+    <% 
+    }
+    %>    
     <div class="window-popup">
         <div class="wp-content">
             <h2>Avaliando <%= user.getName() %></h2>
@@ -246,6 +253,7 @@
                 <label for="description">Descrição:</label>
                 <input name="description" type="text"/>
                 <input name="receiver" type="hidden" value="<%= user.getId() %>"/>
+                <input name="TypeRate" type="hidden" value="PERSONAL"/>
                 <input type="submit" value="Avaliar" />
             </form>
             <a href="#" id="button-close-popup">Close</a>
