@@ -41,7 +41,7 @@ if(session.getAttribute("authenticated")!=null && session.getAttribute("authenti
                     </form>
 
                     <tr>
-                        <td colspan="2"><button type="button">REGISTER</button></td>
+                        <td colspan="2"><button type="button" onClick="window.location = './register'">REGISTER</button></td>
                     </tr>  
                 </table>
             </div>
